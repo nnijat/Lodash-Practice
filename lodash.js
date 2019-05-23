@@ -12,22 +12,34 @@ console.log("withou result: ", _.without(arr, 1, 2, 3, 4, 5));
 console.log("shuffle result: ", _.shuffle(arr));
 console.log("find result: ", _.find(arrObj, function (obj) { return obj.age < 33; }));
 console.log("size result: ", _.size(arr));
+console.log("sort result", _.sortBy(arr));
 
 
 // Unite Test
-//TESTING
 describe('Test lodash function', () => {
 
-    // Misstyped address
-    it('1. uses the right address', () => {
-        
-            assert.deepEqual(_.chunk(arr, 9), [ [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 10 ] ]);
-            
-        }
-       
-    );
+    it('1. Test _chunk() function', () => {
+        let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        assert.deepEqual(_.chunk(arr, 5), [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]]);
+    });
 
-    
+    it('2. Test reverse() function', () => {
+        let arr = [1, 2, 3, 4, 5];
+        assert.deepEqual(_.reverse(arr), [5, 4, 3, 2, 1]);
+    });
 
-    
+    it('3. Test without() function', () => {
+        let arr = [1, 2, 3];
+        assert.deepEqual(_.without(arr, 2), [1, 3]);
+    });
+
+    it('4. Test find() function', () => {
+        let arrObj = [{ 'age': 1 }, { 'age': 2 }, { 'age': 3 }, { 'age': 4 }]
+        assert.deepEqual(_.find(arrObj, function (obj) { return obj.age < 2; }), { age: 1 });
+    });
+
+    it('5. Test sort() function', () => {
+        let arr = [4, 2, 1, 3, 5];
+        assert.deepEqual(_.sortBy(arr), [1, 2, 3, 4, 5]);
+    });
 });
